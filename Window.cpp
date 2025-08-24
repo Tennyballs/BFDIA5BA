@@ -13,9 +13,6 @@ Window::Window(char *WindowTitle, int WindowWidth, int WindowHeight)
 
     SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 1);
     SDL_RenderClear(this->renderer);
-
-    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 255);
-    SDL_RenderPresent(this->renderer);
 }
 
 Window::~Window()
