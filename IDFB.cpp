@@ -21,10 +21,11 @@ int main(int argc, char *argv[])
     SDL_QueryTexture(image, NULL, NULL, &tw, &th);
 
     SDL_Rect texr;
-    texr.x = 0;
-    texr.y = 0;
+    texr.x = SCREEN_CENTER_X - tw / 2;
+    texr.y = SCREEN_CENTER_Y - th / 2;
     texr.w = tw;
     texr.h = th;
+
     do
     {
         MainWindow->PollEvents();
