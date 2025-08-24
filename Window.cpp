@@ -8,7 +8,7 @@ Window::Window(char *WindowTitle, int WindowWidth, int WindowHeight)
     this->WindowWidth = WindowWidth;
     this->WindowHeight = WindowHeight;
 
-    window = SDL_CreateWindow("BFDIA5B", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, 0);
+    window = SDL_CreateWindow(WindowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, 0);
     renderer = SDL_CreateRenderer(window, -1, 0);
 
     SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 1);
