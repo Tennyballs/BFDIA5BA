@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
     Window *MainWindow = new Window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-    Texture *myTexture = new Texture(MainWindow->renderer, "./Source/bg/bg0000.png");
+    Texture *myTexture = new Texture(MainWindow->renderer, "./Source/Images/bg/bg0000.png");
 
     myTexture->XY(0, 0);
     myTexture->ZoomTo(WINDOW_WIDTH, WINDOW_HEIGHT);
