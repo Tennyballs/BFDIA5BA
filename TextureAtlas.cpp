@@ -18,12 +18,7 @@ TextureAtlas::TextureAtlas(SDL_Renderer *renderer, char *image_filename, char *a
     fseek(FileData, 0, SEEK_SET);
 
     char *str = (char *)malloc(sizeof(char) * FileSize + 1);
-    bool isOpen = fread(str, 1, FileSize, FileData);
-    if (!isOpen)
-    {
-        printf("We encountered an error in the TextureAtlas File. (ln:23)");
-        return;
-    }
+    fread(str, 1, FileSize, FileData);
 
     str[FileSize] = '\0';
     size_t amt = 0;
@@ -35,7 +30,10 @@ TextureAtlas::TextureAtlas(SDL_Renderer *renderer, char *image_filename, char *a
         printf("%ld\n", amt);
     }
 
-    fclose(FileData);
+    if (!fclose(FileData))
+    {
+        printf("Error with closing atlas file!!! (POSSIBLE MEMORY LEAK*)\n");
+    }
 }
 
 TextureAtlas::~TextureAtlas()
