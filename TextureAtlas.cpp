@@ -21,10 +21,6 @@ TextureAtlas::TextureAtlas(SDL_Renderer *renderer, char *image_filename, char *a
     if (fread(str, 1, FileSize, FileData))
     {
         char *strings = strtok(str, ";");
-        for (size_t i = 0; i < sizeof(strings) / sizeof(strings[0]) - 10; i++)
-        {
-            printf("%s\n", strings[i]);
-        }
     }
 
     str[FileSize] = '\0';
