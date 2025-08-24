@@ -19,7 +19,8 @@ int main(int argc, char *argv[])
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
     Window *MainWindow = new Window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-    Texture *myTexture = new Texture(MainWindow->renderer, "./Source/Images/bg/bg0000.png");
+    Texture *myTexture = new Texture(MainWindow->renderer, "Source/Images/bg/bg0000.png");
+    Texture *block = new Texture(MainWindow->renderer, "Source/Images/blocks/blocks0.png");
 
     myTexture->XY(0, 0);
     myTexture->ZoomTo(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -29,6 +30,7 @@ int main(int argc, char *argv[])
         MainWindow->PollEvents();
         MainWindow->Clear();
         MainWindow->RenderTexture(myTexture);
+        MainWindow->RenderTexture(block);
         MainWindow->Flush();
     } while (MainWindow->GetEvents() != SDL_QUIT);
 
