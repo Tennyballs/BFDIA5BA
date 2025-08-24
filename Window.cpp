@@ -1,6 +1,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include "Texture.h"
 #include "Window.h"
 
 Window::Window(char *WindowTitle, int WindowWidth, int WindowHeight)
@@ -15,6 +16,11 @@ Window::Window(char *WindowTitle, int WindowWidth, int WindowHeight)
     SDL_RenderClear(this->renderer);
 }
 
+void Window::RenderTexture(Texture *tex)
+{
+    tex->Draw(renderer);
+}
+
 Window::~Window()
 {
     SDL_DestroyWindow(window);
@@ -26,6 +32,11 @@ Window::~Window()
 void Window::PollEvents()
 {
     SDL_PollEvent(&event);
+}
+
+void Window::Flush()
+{
+    SDL_RenderPresent(renderer);
 }
 
 void Window::Clear()

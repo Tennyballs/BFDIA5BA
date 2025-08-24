@@ -1,12 +1,21 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
-class Texture2D
+class Texture
 {
 private:
-    /* data */
+    int w, h;
+    SDL_Rect Rect;
+    SDL_Texture *Image;
+
 public:
-    Texture2D();
-    ~Texture2D();
+    Texture(SDL_Renderer *Renderer, char *FilePath);
+    ~Texture();
+
+    void Draw(SDL_Renderer *renderer);
+
+    void SetScale(float value);
+    void ZoomTo(int w, int h);
+    void XY(int x, int y);
 };
 
-#endif TEXTURE_h
+#endif // TEXTURE_h

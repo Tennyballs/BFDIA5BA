@@ -4,6 +4,8 @@
 
 #include "IDFB.h"
 #include "Window.h"
+#include "Texture.h"
+#include <string>
 
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
@@ -16,25 +18,19 @@ int main(int argc, char *argv[])
 {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
     Window *MainWindow = new Window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
-    int tw, th;
-    SDL_Texture *image = IMG_LoadTexture(MainWindow->renderer, "Source/Images/Hello.png");
-    SDL_QueryTexture(image, NULL, NULL, &tw, &th);
 
-    SDL_Rect texr;
-    texr.x = SCREEN_CENTER_X - tw / 2;
-    texr.y = SCREEN_CENTER_Y - th / 2;
-    texr.w = tw;
-    texr.h = th;
+    Texture *myTexture = new Texture(MainWindow->renderer, "./Source/bg/bg0000.png");
+
+    myTexture->XY(0, 0);
+    myTexture->ZoomTo(WINDOW_WIDTH, WINDOW_HEIGHT);
 
     do
     {
         MainWindow->PollEvents();
         MainWindow->Clear();
-        SDL_RenderCopy(MainWindow->renderer, image, NULL, &texr);
-        SDL_RenderPresent(MainWindow->renderer);
+        MainWindow->RenderTexture(myTexture);
+        MainWindow->Flush();
     } while (MainWindow->GetEvents() != SDL_QUIT);
-
-    SDL_DestroyTexture(image);
 
     MainWindow->~Window();
 
