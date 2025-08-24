@@ -1,6 +1,8 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+class TextureAtlas;
+
 class Texture;
 class Window
 {
@@ -23,7 +25,6 @@ public:
     void PollEvents();
     Uint32 GetEvents();
 
-    void RenderTexture(Texture *texture);
     void Flush();
 };
 

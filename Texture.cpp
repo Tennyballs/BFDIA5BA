@@ -3,17 +3,19 @@
 
 Texture::Texture(SDL_Renderer *renderer, char *filePath)
 {
-    Image = IMG_LoadTexture(renderer, filePath);
-    SDL_QueryTexture(Image, NULL, NULL, &w, &h);
+    Renderer = renderer;
+
+    Image = IMG_LoadTexture(Renderer, filePath);
+    SDL_QueryTexture(Image, NULL, NULL, &ImageWidth, &ImageHeight);
     Rect.x = 0;
     Rect.y = 0;
-    Rect.w = w;
-    Rect.h = h;
+    Rect.w = ImageWidth;
+    Rect.h = ImageHeight;
 }
 
-void Texture::Draw(SDL_Renderer *renderer)
+void Texture::Draw()
 {
-    SDL_RenderCopy(renderer, Image, NULL, &Rect);
+    SDL_RenderCopy(Renderer, Image, NULL, &Rect);
 }
 
 Texture::~Texture()

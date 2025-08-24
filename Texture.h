@@ -3,15 +3,17 @@
 class Texture
 {
 private:
-    int w, h;
+    int ImageWidth, ImageHeight;
     SDL_Rect Rect;
     SDL_Texture *Image;
+    //
+    SDL_Renderer *Renderer;
 
 public:
-    Texture(SDL_Renderer *Renderer, char *FilePath);
+    Texture(SDL_Renderer *, char *);
     ~Texture();
 
-    void Draw(SDL_Renderer *renderer);
+    void Draw();
 
     void SetScale(float value);
     void ZoomTo(int w, int h);

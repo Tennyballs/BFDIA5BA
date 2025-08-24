@@ -1,6 +1,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include "TextureAtlas.h"
 #include "Texture.h"
 #include "Window.h"
 
@@ -14,11 +15,6 @@ Window::Window(char *WindowTitle, int WindowWidth, int WindowHeight)
 
     SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 1);
     SDL_RenderClear(this->renderer);
-}
-
-void Window::RenderTexture(Texture *tex)
-{
-    tex->Draw(renderer);
 }
 
 Window::~Window()

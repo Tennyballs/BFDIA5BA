@@ -1,0 +1,84 @@
+#include <SDL_image.h>
+#include <stdio.h>
+#include <string.h>
+#include "Texture.h"
+#include "TextureAtlas.h"
+TextureAtlas::TextureAtlas(SDL_Renderer *renderer, char *image_filename, char *atlas_filename)
+{
+    MyImage = IMG_LoadTexture(renderer, image_filename);
+    SDL_QueryTexture(MyImage, NULL, NULL, &ImageWidth, &ImageHeight);
+
+    FILE *FileData;
+    size_t FileSize;
+
+    FileData = fopen(atlas_filename, "rb");
+
+    fseek(FileData, 0, SEEK_END);
+    FileSize = ftell(FileData);
+    fseek(FileData, 0, SEEK_SET);
+
+    char *str = (char *)malloc(sizeof(char) * FileSize + 1);
+    if (fread(str, 1, FileSize, FileData))
+    {
+        char *strings = strtok(str, ";");
+        for (size_t i = 0; i < sizeof(strings) / sizeof(strings[0]) - 10; i++)
+        {
+            printf("%s\n", strings[i]);
+        }
+    }
+
+    str[FileSize] = '\0';
+    fclose(FileData);
+}
+
+TextureAtlas::~TextureAtlas()
+{
+    SDL_DestroyTexture(MyImage);
+}
+
+void TextureAtlas::Draw()
+{
+    SDL_RenderCopy(renderer, MyImage, &CropTranslate, &PosScale);
+}
+
+void TextureAtlas::SetScale(float f)
+{
+    PosScale.w *= f;
+    PosScale.h *= f;
+    PosScale.x += f / 2;
+    PosScale.y += f / 2;
+}
+
+void TextureAtlas::ZoomTo(int w, int h)
+{
+    PosScale.w = w;
+    PosScale.h = h;
+}
+
+void TextureAtlas::XY(int x, int y)
+{
+    PosScale.x = x;
+    PosScale.y = y;
+}
+
+void TextureAtlas::Crop(int x, int y, int w, int h)
+{
+    CropTranslate =
+        {
+            .x = x,
+            .y = y,
+            .w = w,
+            .h = h,
+        };
+}
+
+void TextureAtlas::Translate(int x, int y, int w, int h)
+{
+    PosScale =
+        {
+            .x = x,
+            .y = y,
+            .w = w,
+            .h = h,
+        };
+}
