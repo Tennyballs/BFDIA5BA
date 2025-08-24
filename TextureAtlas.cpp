@@ -3,6 +3,8 @@
 #include <string.h>
 #include "Texture.h"
 #include "TextureAtlas.h"
+#include <vector>
+
 TextureAtlas::TextureAtlas(SDL_Renderer *renderer, char *image_filename, char *atlas_filename)
 {
     MyImage = IMG_LoadTexture(renderer, image_filename);
