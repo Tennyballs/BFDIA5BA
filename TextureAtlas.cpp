@@ -30,7 +30,7 @@ TextureAtlas::TextureAtlas(SDL_Renderer *renderer, char *image_filename, char *a
         printf("%ld\n", amt);
     }
 
-    if (!fclose(FileData))
+    if (fclose(FileData))
     {
         printf("Error with closing atlas file!!! (POSSIBLE MEMORY LEAK*)\n");
     }
