@@ -20,7 +20,12 @@ int main(int argc, char *argv[])
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
     Window *MainWindow = new Window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
     TextureAtlas *myTexture = new TextureAtlas(MainWindow->renderer, "Source/Images/blocks/texture.png", "Source/Images/blocks/blocks.atlas");
-    //
+
+    if (myTexture == NULL)
+    {
+        exit(1);
+    }
+
     myTexture->XY(0, 0);
     myTexture->ZoomTo(WINDOW_WIDTH, WINDOW_HEIGHT);
 

@@ -18,12 +18,23 @@ TextureAtlas::TextureAtlas(SDL_Renderer *renderer, char *image_filename, char *a
     fseek(FileData, 0, SEEK_SET);
 
     char *str = (char *)malloc(sizeof(char) * FileSize + 1);
-    if (fread(str, 1, FileSize, FileData))
+    bool isOpen = fread(str, 1, FileSize, FileData);
+    if (!isOpen)
     {
-        char *strings = strtok(str, ";");
+        printf("We encountered an error in the TextureAtlas File. (ln:23)");
+        return;
     }
 
     str[FileSize] = '\0';
+    size_t amt = 0;
+    char *strings = strtok(str, ";");
+    while (strings != NULL)
+    {
+        strings = strtok(NULL, ";");
+        amt++;
+        printf("%ld\n", amt);
+    }
+
     fclose(FileData);
 }
 
