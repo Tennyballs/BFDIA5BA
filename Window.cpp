@@ -40,7 +40,7 @@ void Window::Clear()
     SDL_RenderClear(renderer);
 }
 
-Uint32 Window::GetEvents()
+SDL_Event Window::GetEvents()
 {
-    return event.type;
+    return event;
 }

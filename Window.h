@@ -23,7 +23,7 @@ public:
     void Clear();
 
     void PollEvents();
-    Uint32 GetEvents();
+    SDL_Event GetEvents();
 
     void Flush();
 };

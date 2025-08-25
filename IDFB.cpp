@@ -21,17 +21,28 @@ int main(int argc, char *argv[])
     Window *MainWindow = new Window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
     TextureAtlas *myTexture = new TextureAtlas(MainWindow->renderer, "Source/Images/blocks/texture.png", "Source/Images/blocks/blocks.atlas");
 
-    myTexture->XY(SCREEN_CENTER_X, SCREEN_CENTER_Y);
-    myTexture->SetIndex(2);
-    myTexture->ZoomTo(256 / 2, 256);
-
+    size_t t = 0;
+    size_t i = 0;
+    SDL_Event event;
     do
     {
+        event = MainWindow->GetEvents();
+        i++;
+        myTexture->SetIndex(i % myTexture->amount_of_textures);
+        myTexture->ZoomTo(myTexture->CropTranslate.w, myTexture->CropTranslate.h);
+        myTexture->SetScale(5.0);
+        myTexture->XY(SCREEN_CENTER_X, SCREEN_CENTER_Y);
         MainWindow->PollEvents();
         MainWindow->Clear();
         myTexture->Draw();
         MainWindow->Flush();
-    } while (MainWindow->GetEvents() != SDL_QUIT);
+
+        while (t < 1000000)
+        {
+            t++;
+        }
+        t = 0;
+    } while (event.type != SDL_QUIT);
 
     MainWindow->~Window();
 

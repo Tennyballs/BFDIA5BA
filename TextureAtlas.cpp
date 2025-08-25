@@ -49,6 +49,7 @@ TextureAtlas::TextureAtlas(SDL_Renderer *renderer, char *image_filename, char *a
         p.h = IntArray[i + 3];
         owos.push_back(p);
     }
+    amount_of_textures = owos.size();
 }
 
 TextureAtlas::~TextureAtlas()
@@ -78,7 +79,7 @@ void TextureAtlas::ZoomTo(int w, int h)
 void TextureAtlas::XY(int x, int y)
 {
     PosScale.x = x;
-    PosScale.y = y;
+    PosScale.y = y - PosScale.h;
 }
 
 void TextureAtlas::Crop(int x, int y, int w, int h)

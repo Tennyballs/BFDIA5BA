@@ -6,11 +6,8 @@
 class TextureAtlas
 {
 private:
-    int index;
     int ImageWidth, ImageHeight;
     //
-    SDL_Rect CropTranslate;
-    SDL_Rect PosScale;
     //
     SDL_Renderer *renderer;
     SDL_Texture *MyImage;
@@ -20,6 +17,8 @@ private:
 public:
     TextureAtlas(SDL_Renderer *, char *, char *);
     ~TextureAtlas();
+    SDL_Rect CropTranslate;
+    SDL_Rect PosScale;
 
     void Draw();
 
@@ -31,6 +30,7 @@ public:
     void Crop(int, int, int, int);
 
     void SetIndex(size_t);
+    int amount_of_textures = 1;
 };
 
 #endif // TEXTUREATLAS_H
