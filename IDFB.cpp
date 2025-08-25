@@ -11,7 +11,7 @@
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
 #define SCREEN_CENTER_X WINDOW_WIDTH / 2
-#define SCREEN_CENTER_Y SCREEN_CENTER_Y / 2
+#define SCREEN_CENTER_Y WINDOW_HEIGHT / 2
 
 #define WINDOW_TITLE "BFDIA 5b is a game."
 
@@ -21,13 +21,9 @@ int main(int argc, char *argv[])
     Window *MainWindow = new Window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
     TextureAtlas *myTexture = new TextureAtlas(MainWindow->renderer, "Source/Images/blocks/texture.png", "Source/Images/blocks/blocks.atlas");
 
-    if (myTexture == NULL)
-    {
-        exit(1);
-    }
-
-    myTexture->XY(0, 0);
-    myTexture->ZoomTo(WINDOW_WIDTH, WINDOW_HEIGHT);
+    myTexture->XY(SCREEN_CENTER_X, SCREEN_CENTER_Y);
+    myTexture->SetIndex(2);
+    myTexture->ZoomTo(256 / 2, 256);
 
     do
     {

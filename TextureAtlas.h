@@ -1,7 +1,7 @@
-typedef struct
-{
-    int x, y, w, h;
-} OwO;
+#ifndef TEXTUREATLAS_H
+#define TEXTUREATLAS_H
+
+#include <vector>
 
 class TextureAtlas
 {
@@ -14,8 +14,8 @@ private:
     //
     SDL_Renderer *renderer;
     SDL_Texture *MyImage;
-    //
-    OwO **owos;
+    // the owos (positions)
+    std::vector<SDL_Rect> owos = std::vector<SDL_Rect>(); // Stop with the furry shit
 
 public:
     TextureAtlas(SDL_Renderer *, char *, char *);
@@ -23,10 +23,14 @@ public:
 
     void Draw();
 
-    void SetScale(float value);
-    void ZoomTo(int w, int h);
-    void XY(int x, int y);
+    void SetScale(float);
+    void ZoomTo(int, int);
+    void XY(int, int);
 
-    void Translate(int x, int y, int w, int h);
-    void Crop(int x, int y, int w, int h);
+    void Translate(int, int, int, int);
+    void Crop(int, int, int, int);
+
+    void SetIndex(size_t);
 };
+
+#endif // TEXTUREATLAS_H

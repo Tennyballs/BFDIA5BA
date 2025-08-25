@@ -4,37 +4,50 @@
 #include "Texture.h"
 #include "TextureAtlas.h"
 #include <vector>
+#include <string>
+#include <sstream>
+#include <iostream>
+
+std::vector<std::string> splitString(const std::string &input, char delimiter)
+{
+    std::vector<std::string> result;
+    std::stringstream ss(input);
+    std::string segment;
+
+    while (std::getline(ss, segment, delimiter))
+    {
+        result.push_back(segment);
+    }
+    return result;
+}
 
 TextureAtlas::TextureAtlas(SDL_Renderer *renderer, char *image_filename, char *atlas_filename)
 {
+    this->renderer = renderer;
     MyImage = IMG_LoadTexture(renderer, image_filename);
     SDL_QueryTexture(MyImage, NULL, NULL, &ImageWidth, &ImageHeight);
-
-    FILE *FileData;
-    size_t FileSize;
-
-    FileData = fopen(atlas_filename, "rb");
-
-    fseek(FileData, 0, SEEK_END);
-    FileSize = ftell(FileData);
-    fseek(FileData, 0, SEEK_SET);
-
-    char *str = (char *)malloc(sizeof(char) * FileSize + 1);
-    fread(str, 1, FileSize, FileData);
-
-    str[FileSize] = '\0';
-    size_t amt = 0;
-    char *strings = strtok(str, ";");
-    while (strings != NULL)
+    FILE *FileData = fopen(atlas_filename, "rb");            // Open the file
+    fseek(FileData, 0, SEEK_END);                            // Go to the end
+    size_t FileSize = ftell(FileData);                       // Get the file size
+    fseek(FileData, 0, SEEK_SET);                            // go to the start
+    char *str = (char *)malloc(sizeof(char) * FileSize + 1); // +1 for the null terminator
+    fread(str, 1, FileSize, FileData);                       // read all the file data
+    str[FileSize] = '\0';                                    // Terminate the string
+    fclose(FileData);                                        // close the file
+    std::vector<int> IntArray = std::vector<int>();
+    for (std::string a : splitString(str, ';'))
     {
-        strings = strtok(NULL, ";");
-        amt++;
-        printf("%ld\n", amt);
+        for (std::string b : splitString(a, ','))
+            IntArray.push_back(atoi(b.c_str()));
     }
-
-    if (fclose(FileData))
+    for (size_t i = 0; i < IntArray.size(); i += 4)
     {
-        printf("Error with closing atlas file!!! (POSSIBLE MEMORY LEAK*)\n");
+        SDL_Rect p;
+        p.x = IntArray[i];
+        p.y = IntArray[i + 1];
+        p.w = IntArray[i + 2];
+        p.h = IntArray[i + 3];
+        owos.push_back(p);
     }
 }
 
@@ -88,4 +101,9 @@ void TextureAtlas::Translate(int x, int y, int w, int h)
             .w = w,
             .h = h,
         };
+}
+
+void TextureAtlas::SetIndex(size_t index)
+{
+    CropTranslate = owos[index];
 }
