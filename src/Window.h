@@ -17,7 +17,7 @@ private:
 public:
     SDL_Renderer *renderer;
 
-    Window(char *window_title, int window_width, int window_height);
+    Window(const char *window_title, int window_width, int window_height);
     ~Window();
 
     void Clear();

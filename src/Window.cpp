@@ -5,7 +5,7 @@
 #include "Texture.h"
 #include "Window.h"
 
-Window::Window(char *WindowTitle, int WindowWidth, int WindowHeight)
+Window::Window(const char *WindowTitle, int WindowWidth, int WindowHeight)
 {
     this->WindowWidth = WindowWidth;
     this->WindowHeight = WindowHeight;
