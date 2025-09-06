@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 4.0)
 project(BFDIA5BA VERSION 0.1.0 LANGUAGES C CXX)
 
 add_executable(BFDIA5BA
@@ -7,8 +7,6 @@ add_executable(BFDIA5BA
 
 target_sources(BFDIA5BA
     PRIVATE
-    src/TextureAtlas.cpp
-    src/Texture.cpp
     src/Window.cpp
 )
 

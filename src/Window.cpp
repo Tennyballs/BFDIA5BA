@@ -1,8 +1,6 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include "TextureAtlas.h"
-#include "Texture.h"
 #include "Window.h"
 
 Window::Window(const char *WindowTitle, int WindowWidth, int WindowHeight)
