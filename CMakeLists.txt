@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.31.6)
+cmake_minimum_required(VERSION 3.11)
 project(BFDIA5BA VERSION 0.1.0 LANGUAGES C CXX)
 
 add_executable(BFDIA5BA
