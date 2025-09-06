@@ -58,7 +58,7 @@ jobs:
       run: |
         git clone https://github.com/microsoft/vcpkg.git
         .\vcpkg\bootstrap-vcpkg.bat
-        .\vcpkg\vcpkg.exe install sdl2 sdl2_image sdl2_net sdl2_ttf
+        .\vcpkg\vcpkg.exe install sdl2 sdl2-image sdl2-net sdl2-ttf
         echo "VCPKG_ROOT=${{ github.workspace }}\vcpkg" | Out-File -FilePath $env:GITHUB_ENV -Append
       
 
