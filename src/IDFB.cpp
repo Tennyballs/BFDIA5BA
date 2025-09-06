@@ -4,8 +4,6 @@
 
 #include "IDFB.h"
 #include "Window.h"
-#include "TextureAtlas.h"
-#include "Texture.h"
 #include <string>
 
 #define WINDOW_WIDTH 1280

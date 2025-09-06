@@ -3,6 +3,10 @@ project(BFDIA5BA VERSION 0.1.0 LANGUAGES C CXX)
 
 add_executable(BFDIA5BA
     src/IDFB.cpp
+)
+
+target_sources(BFDIA5BA
+    PRIVATE
     src/TextureAtlas.cpp
     src/Texture.cpp
     src/Window.cpp
