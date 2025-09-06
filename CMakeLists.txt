@@ -11,7 +11,7 @@ target_sources(BFDIA5BA PRIVATE
                 src/Window.cpp
 )
 
-find_package(SDL2 REQUIRED)
+find_package(SDL2 REQUIRED COMPONENTS SDL2main)
 include_directories(${SDL2_INCLUDE_DIR})
 
 find_package(SDL2 REQUIRED CONFIG)
