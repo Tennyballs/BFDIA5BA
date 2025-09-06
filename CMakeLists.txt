@@ -11,7 +11,7 @@ target_sources(BFDIA5BA
 )
 
 # Find SDL2 and SDL2main
-find_package(SDL2 REQUIRED COMPONENTS SDL2main)
+find_package(SDL2 REQUIRED)
 # Find SDL2_image
 find_package(SDL2_image REQUIRED)
 
